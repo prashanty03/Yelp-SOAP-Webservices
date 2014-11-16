@@ -1,0 +1,132 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="/Users/prashantyadav/Documents/apache-tomcat-7.0.56/wtpwebapps/Yelp/WEB-INF/attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:service name="Service" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="addElement" qname="ns1:addElement" returnQName="ns1:addElementReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:name" type="xsd:string"/>
+   <ns2:parameter qname="ns1:description" type="xsd:string"/>
+   <ns2:parameter qname="ns1:address" type="xsd:string"/>
+   <ns2:parameter qname="ns1:categoryName" type="xsd:string"/>
+   <ns3:fault class="exception.YelpException" qname="ns1:fault" type="ns2:YelpException" xmlns:ns2="http://exception" xmlns:ns3="http://xml.apache.org/axis/wsdd/"/>
+  </ns2:operation>
+  <ns1:operation name="login" qname="ns3:login" returnQName="ns3:loginReturn" returnType="ns4:UserVO" soapAction="" xmlns:ns3="http://connection" xmlns:ns4="http://vo">
+   <ns1:parameter qname="ns3:email" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns3:password" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:fault class="exception.YelpException" qname="ns3:fault" type="ns5:YelpException" xmlns:ns5="http://exception"/>
+  </ns1:operation>
+  <ns1:operation name="getPassword" qname="ns6:getPassword" returnQName="ns6:getPasswordReturn" returnType="xsd:string" soapAction="" xmlns:ns6="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:username" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="deleteElement" qname="ns7:deleteElement" returnQName="ns7:deleteElementReturn" returnType="xsd:string" soapAction="" xmlns:ns7="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns7:name" type="xsd:string"/>
+   <ns1:fault class="exception.YelpException" qname="ns7:fault" type="ns8:YelpException" xmlns:ns8="http://exception"/>
+  </ns1:operation>
+  <ns1:operation name="addCategory" qname="ns9:addCategory" returnQName="ns9:addCategoryReturn" returnType="xsd:string" soapAction="" xmlns:ns9="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns9:name" type="xsd:string"/>
+   <ns1:parameter qname="ns9:description" type="xsd:string"/>
+   <ns1:fault class="exception.YelpException" qname="ns9:fault" type="ns10:YelpException" xmlns:ns10="http://exception"/>
+  </ns1:operation>
+  <ns1:operation name="deleteCategory" qname="ns11:deleteCategory" returnQName="ns11:deleteCategoryReturn" returnType="xsd:string" soapAction="" xmlns:ns11="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns11:name" type="xsd:string"/>
+   <ns1:fault class="exception.YelpException" qname="ns11:fault" type="ns12:YelpException" xmlns:ns12="http://exception"/>
+  </ns1:operation>
+  <ns1:operation name="updateElement" qname="ns13:updateElement" returnQName="ns13:updateElementReturn" returnType="xsd:string" soapAction="" xmlns:ns13="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns13:name" type="xsd:string"/>
+   <ns1:parameter qname="ns13:description" type="xsd:string"/>
+   <ns1:parameter qname="ns13:address" type="xsd:string"/>
+   <ns1:parameter qname="ns13:oldName" type="xsd:string"/>
+   <ns1:fault class="exception.YelpException" qname="ns13:fault" type="ns14:YelpException" xmlns:ns14="http://exception"/>
+  </ns1:operation>
+  <ns1:operation name="updateCategory" qname="ns15:updateCategory" returnQName="ns15:updateCategoryReturn" returnType="xsd:string" soapAction="" xmlns:ns15="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns15:name" type="xsd:string"/>
+   <ns1:parameter qname="ns15:description" type="xsd:string"/>
+   <ns1:parameter qname="ns15:categoryName" type="xsd:string"/>
+   <ns1:fault class="exception.YelpException" qname="ns15:fault" type="ns16:YelpException" xmlns:ns16="http://exception"/>
+  </ns1:operation>
+  <ns1:operation name="getElementList" qname="ns17:getElementList" returnQName="ns17:getElementListReturn" returnType="ns18:ElementVO" soapAction="" xmlns:ns17="http://connection" xmlns:ns18="http://vo">
+   <ns1:parameter qname="ns17:categoryName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:fault class="exception.YelpException" qname="ns17:fault" type="ns19:YelpException" xmlns:ns19="http://exception"/>
+  </ns1:operation>
+  <ns1:operation name="addReview" qname="ns20:addReview" returnQName="ns20:addReviewReturn" returnType="ns21:StatusVO" soapAction="" xmlns:ns20="http://connection" xmlns:ns21="http://vo">
+   <ns1:parameter qname="ns20:elementName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns20:email" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns20:rating" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns20:comment" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:fault class="exception.YelpException" qname="ns20:fault" type="ns22:YelpException" xmlns:ns22="http://exception"/>
+  </ns1:operation>
+  <ns1:operation name="getReviews" qname="ns23:getReviews" returnQName="ns23:getReviewsReturn" returnType="ns24:ReviewVO" soapAction="" xmlns:ns23="http://connection" xmlns:ns24="http://vo">
+   <ns1:parameter qname="ns23:elementName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:fault class="exception.YelpException" qname="ns23:fault" type="ns25:YelpException" xmlns:ns25="http://exception"/>
+  </ns1:operation>
+  <ns1:operation name="getCategoryList" qname="ns26:getCategoryList" returnQName="ns26:getCategoryListReturn" returnType="ns27:CategoryVO" soapAction="" xmlns:ns26="http://connection" xmlns:ns27="http://vo"/>
+  <ns1:operation name="signUp" qname="ns28:signUp" returnQName="ns28:signUpReturn" returnType="ns29:StatusVO" soapAction="" xmlns:ns28="http://connection" xmlns:ns29="http://vo">
+   <ns1:parameter qname="ns28:firstName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns28:lastName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns28:email" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns28:pwd" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:fault class="exception.YelpException" qname="ns28:fault" type="ns30:YelpException" xmlns:ns30="http://exception"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="updateCategory deleteElement addElement getElementList addCategory signUp getReviews addReview getPassword login getCategoryList updateElement deleteCategory"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="Service"/>
+  <ns1:parameter name="className" value="connection.Service"/>
+  <ns1:parameter name="wsdlServicePort" value="Service"/>
+  <ns1:parameter name="schemaQualified" value="http://exception,http://connection,http://vo"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://connection"/>
+  <ns1:parameter name="wsdlServiceElement" value="ServiceService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns31:YelpException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:exception.YelpException" xmlns:ns31="http://exception"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns32:StatusVO" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:vo.StatusVO" xmlns:ns32="http://vo"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns33:CategoryVO" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:vo.CategoryVO" xmlns:ns33="http://vo"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns34:ReviewVO" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:vo.ReviewVO" xmlns:ns34="http://vo"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns35:UserVO" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:vo.UserVO" xmlns:ns35="http://vo"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns36:ElementVO" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:vo.ElementVO" xmlns:ns36="http://vo"/>
+ </ns1:service>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>

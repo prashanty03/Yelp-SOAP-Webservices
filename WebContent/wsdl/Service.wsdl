@@ -1,0 +1,998 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://connection" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://connection" xmlns:intf="http://connection" xmlns:tns1="http://exception" xmlns:tns2="http://vo" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://connection" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://vo"/>
+   <import namespace="http://exception"/>
+   <element name="addElement">
+    <complexType>
+     <sequence>
+      <element name="name" type="xsd:string"/>
+      <element name="description" type="xsd:string"/>
+      <element name="address" type="xsd:string"/>
+      <element name="categoryName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addElementResponse">
+    <complexType>
+     <sequence>
+      <element name="addElementReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fault" type="tns1:YelpException"/>
+   <element name="login">
+    <complexType>
+     <sequence>
+      <element name="email" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="loginResponse">
+    <complexType>
+     <sequence>
+      <element name="loginReturn" type="tns2:UserVO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getPassword">
+    <complexType>
+     <sequence>
+      <element name="username" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getPasswordResponse">
+    <complexType>
+     <sequence>
+      <element name="getPasswordReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteElement">
+    <complexType>
+     <sequence>
+      <element name="name" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteElementResponse">
+    <complexType>
+     <sequence>
+      <element name="deleteElementReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addCategory">
+    <complexType>
+     <sequence>
+      <element name="name" type="xsd:string"/>
+      <element name="description" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addCategoryResponse">
+    <complexType>
+     <sequence>
+      <element name="addCategoryReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteCategory">
+    <complexType>
+     <sequence>
+      <element name="name" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteCategoryResponse">
+    <complexType>
+     <sequence>
+      <element name="deleteCategoryReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateElement">
+    <complexType>
+     <sequence>
+      <element name="name" type="xsd:string"/>
+      <element name="description" type="xsd:string"/>
+      <element name="address" type="xsd:string"/>
+      <element name="oldName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateElementResponse">
+    <complexType>
+     <sequence>
+      <element name="updateElementReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateCategory">
+    <complexType>
+     <sequence>
+      <element name="name" type="xsd:string"/>
+      <element name="description" type="xsd:string"/>
+      <element name="categoryName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateCategoryResponse">
+    <complexType>
+     <sequence>
+      <element name="updateCategoryReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getElementList">
+    <complexType>
+     <sequence>
+      <element name="categoryName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getElementListResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getElementListReturn" type="tns2:ElementVO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addReview">
+    <complexType>
+     <sequence>
+      <element name="elementName" type="xsd:string"/>
+      <element name="email" type="xsd:string"/>
+      <element name="rating" type="xsd:int"/>
+      <element name="comment" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addReviewResponse">
+    <complexType>
+     <sequence>
+      <element name="addReviewReturn" type="tns2:StatusVO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getReviews">
+    <complexType>
+     <sequence>
+      <element name="elementName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getReviewsResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getReviewsReturn" type="tns2:ReviewVO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCategoryList">
+    <complexType/>
+   </element>
+   <element name="getCategoryListResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getCategoryListReturn" type="tns2:CategoryVO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="signUp">
+    <complexType>
+     <sequence>
+      <element name="firstName" type="xsd:string"/>
+      <element name="lastName" type="xsd:string"/>
+      <element name="email" type="xsd:string"/>
+      <element name="pwd" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="signUpResponse">
+    <complexType>
+     <sequence>
+      <element name="signUpReturn" type="tns2:StatusVO"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://exception" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://vo"/>
+   <complexType name="YelpException">
+    <sequence/>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://vo" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://exception"/>
+   <complexType name="UserVO">
+    <sequence>
+     <element name="email" nillable="true" type="xsd:string"/>
+     <element name="firstName" nillable="true" type="xsd:string"/>
+     <element name="id" type="xsd:int"/>
+     <element name="isAdmin" nillable="true" type="xsd:string"/>
+     <element name="lastLogin" nillable="true" type="xsd:string"/>
+     <element name="lastName" nillable="true" type="xsd:string"/>
+     <element name="password" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ElementVO">
+    <sequence>
+     <element name="address" nillable="true" type="xsd:string"/>
+     <element name="count" nillable="true" type="xsd:long"/>
+     <element name="description" nillable="true" type="xsd:string"/>
+     <element name="id" nillable="true" type="xsd:long"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+     <element name="rating" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="StatusVO">
+    <sequence>
+     <element name="isSuccessful" nillable="true" type="xsd:boolean"/>
+     <element name="messgge" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ReviewVO">
+    <sequence>
+     <element name="comment" nillable="true" type="xsd:string"/>
+     <element name="elementId" nillable="true" type="xsd:int"/>
+     <element name="elementName" nillable="true" type="xsd:string"/>
+     <element name="email" nillable="true" type="xsd:string"/>
+     <element name="id" nillable="true" type="xsd:long"/>
+     <element name="rating" nillable="true" type="xsd:long"/>
+     <element name="submittedOn" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="CategoryVO">
+    <sequence>
+     <element name="count" nillable="true" type="xsd:int"/>
+     <element name="description" nillable="true" type="xsd:string"/>
+     <element name="id" nillable="true" type="xsd:long"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="addElementRequest">
+
+      <wsdl:part element="impl:addElement" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCategoryListRequest">
+
+      <wsdl:part element="impl:getCategoryList" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateElementResponse">
+
+      <wsdl:part element="impl:updateElementResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteElementRequest">
+
+      <wsdl:part element="impl:deleteElement" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getReviewsResponse">
+
+      <wsdl:part element="impl:getReviewsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPasswordRequest">
+
+      <wsdl:part element="impl:getPassword" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginRequest">
+
+      <wsdl:part element="impl:login" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteCategoryRequest">
+
+      <wsdl:part element="impl:deleteCategory" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addReviewRequest">
+
+      <wsdl:part element="impl:addReview" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getElementListRequest">
+
+      <wsdl:part element="impl:getElementList" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addCategoryResponse">
+
+      <wsdl:part element="impl:addCategoryResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getReviewsRequest">
+
+      <wsdl:part element="impl:getReviews" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="signUpRequest">
+
+      <wsdl:part element="impl:signUp" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addElementResponse">
+
+      <wsdl:part element="impl:addElementResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCategoryListResponse">
+
+      <wsdl:part element="impl:getCategoryListResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateElementRequest">
+
+      <wsdl:part element="impl:updateElement" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="signUpResponse">
+
+      <wsdl:part element="impl:signUpResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="YelpException">
+
+      <wsdl:part element="impl:fault" name="fault">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginResponse">
+
+      <wsdl:part element="impl:loginResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateCategoryResponse">
+
+      <wsdl:part element="impl:updateCategoryResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getElementListResponse">
+
+      <wsdl:part element="impl:getElementListResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addCategoryRequest">
+
+      <wsdl:part element="impl:addCategory" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPasswordResponse">
+
+      <wsdl:part element="impl:getPasswordResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateCategoryRequest">
+
+      <wsdl:part element="impl:updateCategory" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addReviewResponse">
+
+      <wsdl:part element="impl:addReviewResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteCategoryResponse">
+
+      <wsdl:part element="impl:deleteCategoryResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteElementResponse">
+
+      <wsdl:part element="impl:deleteElementResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Service">
+
+      <wsdl:operation name="addElement">
+
+         <wsdl:input message="impl:addElementRequest" name="addElementRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addElementResponse" name="addElementResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:YelpException" name="YelpException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="login">
+
+         <wsdl:input message="impl:loginRequest" name="loginRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:loginResponse" name="loginResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:YelpException" name="YelpException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPassword">
+
+         <wsdl:input message="impl:getPasswordRequest" name="getPasswordRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getPasswordResponse" name="getPasswordResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteElement">
+
+         <wsdl:input message="impl:deleteElementRequest" name="deleteElementRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deleteElementResponse" name="deleteElementResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:YelpException" name="YelpException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addCategory">
+
+         <wsdl:input message="impl:addCategoryRequest" name="addCategoryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addCategoryResponse" name="addCategoryResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:YelpException" name="YelpException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteCategory">
+
+         <wsdl:input message="impl:deleteCategoryRequest" name="deleteCategoryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deleteCategoryResponse" name="deleteCategoryResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:YelpException" name="YelpException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateElement">
+
+         <wsdl:input message="impl:updateElementRequest" name="updateElementRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:updateElementResponse" name="updateElementResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:YelpException" name="YelpException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateCategory">
+
+         <wsdl:input message="impl:updateCategoryRequest" name="updateCategoryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:updateCategoryResponse" name="updateCategoryResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:YelpException" name="YelpException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getElementList">
+
+         <wsdl:input message="impl:getElementListRequest" name="getElementListRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getElementListResponse" name="getElementListResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:YelpException" name="YelpException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addReview">
+
+         <wsdl:input message="impl:addReviewRequest" name="addReviewRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addReviewResponse" name="addReviewResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:YelpException" name="YelpException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getReviews">
+
+         <wsdl:input message="impl:getReviewsRequest" name="getReviewsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getReviewsResponse" name="getReviewsResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:YelpException" name="YelpException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCategoryList">
+
+         <wsdl:input message="impl:getCategoryListRequest" name="getCategoryListRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getCategoryListResponse" name="getCategoryListResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="signUp">
+
+         <wsdl:input message="impl:signUpRequest" name="signUpRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:signUpResponse" name="signUpResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:YelpException" name="YelpException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ServiceSoapBinding" type="impl:Service">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="addElement">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addElementRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addElementResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="YelpException">
+
+            <wsdlsoap:fault name="YelpException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="login">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="loginRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="loginResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="YelpException">
+
+            <wsdlsoap:fault name="YelpException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPassword">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPasswordRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPasswordResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteElement">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteElementRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteElementResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="YelpException">
+
+            <wsdlsoap:fault name="YelpException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addCategory">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addCategoryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addCategoryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="YelpException">
+
+            <wsdlsoap:fault name="YelpException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteCategory">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteCategoryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteCategoryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="YelpException">
+
+            <wsdlsoap:fault name="YelpException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateElement">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="updateElementRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="updateElementResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="YelpException">
+
+            <wsdlsoap:fault name="YelpException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateCategory">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="updateCategoryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="updateCategoryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="YelpException">
+
+            <wsdlsoap:fault name="YelpException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getElementList">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getElementListRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getElementListResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="YelpException">
+
+            <wsdlsoap:fault name="YelpException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addReview">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addReviewRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addReviewResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="YelpException">
+
+            <wsdlsoap:fault name="YelpException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getReviews">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getReviewsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getReviewsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="YelpException">
+
+            <wsdlsoap:fault name="YelpException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCategoryList">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCategoryListRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCategoryListResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="signUp">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="signUpRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="signUpResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="YelpException">
+
+            <wsdlsoap:fault name="YelpException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ServiceService">
+
+      <wsdl:port binding="impl:ServiceSoapBinding" name="Service">
+
+         <wsdlsoap:address location="http://localhost:8080/Yelp/services/Service"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

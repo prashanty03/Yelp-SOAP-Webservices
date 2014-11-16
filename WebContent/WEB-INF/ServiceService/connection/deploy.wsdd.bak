@@ -1,0 +1,139 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ServiceService WSDL service -->
+
+  <service name="Service" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://connection"/>
+      <parameter name="wsdlServiceElement" value="ServiceService"/>
+      <parameter name="schemaQualified" value="http://exception,http://connection,http://vo"/>
+      <parameter name="wsdlServicePort" value="Service"/>
+      <parameter name="className" value="connection.ServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Service"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="addElement" qname="operNS:addElement" xmlns:operNS="http://connection" returnQName="retNS:addElementReturn" xmlns:retNS="http://connection" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:name" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:description" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:address" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:categoryName" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="YelpException" qname="fns:fault" xmlns:fns="http://connection" class="exception.YelpException" type="tns:YelpException" xmlns:tns="http://exception"/>
+      </operation>
+      <operation name="login" qname="operNS:login" xmlns:operNS="http://connection" returnQName="retNS:loginReturn" xmlns:retNS="http://connection" returnType="rtns:UserVO" xmlns:rtns="http://vo" soapAction="" >
+        <parameter qname="pns:email" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="YelpException" qname="fns:fault" xmlns:fns="http://connection" class="exception.YelpException" type="tns:YelpException" xmlns:tns="http://exception"/>
+      </operation>
+      <operation name="getPassword" qname="operNS:getPassword" xmlns:operNS="http://connection" returnQName="retNS:getPasswordReturn" xmlns:retNS="http://connection" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="deleteElement" qname="operNS:deleteElement" xmlns:operNS="http://connection" returnQName="retNS:deleteElementReturn" xmlns:retNS="http://connection" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:name" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="YelpException" qname="fns:fault" xmlns:fns="http://connection" class="exception.YelpException" type="tns:YelpException" xmlns:tns="http://exception"/>
+      </operation>
+      <operation name="addCategory" qname="operNS:addCategory" xmlns:operNS="http://connection" returnQName="retNS:addCategoryReturn" xmlns:retNS="http://connection" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:name" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:description" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="YelpException" qname="fns:fault" xmlns:fns="http://connection" class="exception.YelpException" type="tns:YelpException" xmlns:tns="http://exception"/>
+      </operation>
+      <operation name="deleteCategory" qname="operNS:deleteCategory" xmlns:operNS="http://connection" returnQName="retNS:deleteCategoryReturn" xmlns:retNS="http://connection" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:name" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="YelpException" qname="fns:fault" xmlns:fns="http://connection" class="exception.YelpException" type="tns:YelpException" xmlns:tns="http://exception"/>
+      </operation>
+      <operation name="updateElement" qname="operNS:updateElement" xmlns:operNS="http://connection" returnQName="retNS:updateElementReturn" xmlns:retNS="http://connection" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:name" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:description" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:address" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:oldName" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="YelpException" qname="fns:fault" xmlns:fns="http://connection" class="exception.YelpException" type="tns:YelpException" xmlns:tns="http://exception"/>
+      </operation>
+      <operation name="updateCategory" qname="operNS:updateCategory" xmlns:operNS="http://connection" returnQName="retNS:updateCategoryReturn" xmlns:retNS="http://connection" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:name" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:description" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:categoryName" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="YelpException" qname="fns:fault" xmlns:fns="http://connection" class="exception.YelpException" type="tns:YelpException" xmlns:tns="http://exception"/>
+      </operation>
+      <operation name="getElementList" qname="operNS:getElementList" xmlns:operNS="http://connection" returnQName="retNS:getElementListReturn" xmlns:retNS="http://connection" returnType="rtns:ElementVO" xmlns:rtns="http://vo" soapAction="" >
+        <parameter qname="pns:categoryName" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="YelpException" qname="fns:fault" xmlns:fns="http://connection" class="exception.YelpException" type="tns:YelpException" xmlns:tns="http://exception"/>
+      </operation>
+      <operation name="addReview" qname="operNS:addReview" xmlns:operNS="http://connection" returnQName="retNS:addReviewReturn" xmlns:retNS="http://connection" returnType="rtns:StatusVO" xmlns:rtns="http://vo" soapAction="" >
+        <parameter qname="pns:elementName" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:email" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:rating" xmlns:pns="http://connection" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:comment" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="YelpException" qname="fns:fault" xmlns:fns="http://connection" class="exception.YelpException" type="tns:YelpException" xmlns:tns="http://exception"/>
+      </operation>
+      <operation name="getReviews" qname="operNS:getReviews" xmlns:operNS="http://connection" returnQName="retNS:getReviewsReturn" xmlns:retNS="http://connection" returnType="rtns:ReviewVO" xmlns:rtns="http://vo" soapAction="" >
+        <parameter qname="pns:elementName" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="YelpException" qname="fns:fault" xmlns:fns="http://connection" class="exception.YelpException" type="tns:YelpException" xmlns:tns="http://exception"/>
+      </operation>
+      <operation name="getCategoryList" qname="operNS:getCategoryList" xmlns:operNS="http://connection" returnQName="retNS:getCategoryListReturn" xmlns:retNS="http://connection" returnType="rtns:CategoryVO" xmlns:rtns="http://vo" soapAction="" >
+      </operation>
+      <operation name="signUp" qname="operNS:signUp" xmlns:operNS="http://connection" returnQName="retNS:signUpReturn" xmlns:retNS="http://connection" returnType="rtns:StatusVO" xmlns:rtns="http://vo" soapAction="" >
+        <parameter qname="pns:firstName" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:lastName" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:email" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pwd" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="YelpException" qname="fns:fault" xmlns:fns="http://connection" class="exception.YelpException" type="tns:YelpException" xmlns:tns="http://exception"/>
+      </operation>
+      <parameter name="allowedMethods" value="updateCategory deleteElement addElement getElementList addCategory signUp getReviews addReview getPassword login getCategoryList updateElement deleteCategory"/>
+
+      <typeMapping
+        xmlns:ns="http://exception"
+        qname="ns:YelpException"
+        type="java:exception.YelpException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://vo"
+        qname="ns:StatusVO"
+        type="java:vo.StatusVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://vo"
+        qname="ns:CategoryVO"
+        type="java:vo.CategoryVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://vo"
+        qname="ns:ReviewVO"
+        type="java:vo.ReviewVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://vo"
+        qname="ns:UserVO"
+        type="java:vo.UserVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://vo"
+        qname="ns:ElementVO"
+        type="java:vo.ElementVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
